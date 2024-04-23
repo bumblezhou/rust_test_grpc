@@ -7,10 +7,11 @@ use crate::greeter::{
 use tonic::{transport::Server, Request, Response, Status};
 
 fn calc_factorial(num: u32) -> u64 {
-    if num == 0 {
-        return 1u64;
+    match num {
+        0 => 1,
+        1 => 1,
+        _ => calc_factorial(num - 1) * (num as u64),
     }
-    (num as u64) * calc_factorial(num - 1)
 }
 
 #[derive(Default)]
